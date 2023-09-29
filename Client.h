@@ -16,6 +16,7 @@ class Client
         double** test_grade;
         int num_clients;
 
+
     public:
         //define your public members here
 
@@ -24,4 +25,30 @@ class Client
         ~Client();
         void compute_final_grade(string outputfile_name);
         int find_client(string name);
+
+        void set_client_info(string fileName);
+        void get_client_info();
+        void saving_info();
+        double deposit(string account_num,double amount);
+        double withdraw(string account_num, double withdraw);
+
+
+
+};
+
+struct ClientInfo
+{
+    
+    string client_name;
+    string ssn;
+    double bank_account;
+    double balance;
+};
+
+class Bank
+{
+    private:
+        int num_client;
+        Client* client_info;  
+
 };

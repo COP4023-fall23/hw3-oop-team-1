@@ -96,4 +96,79 @@ void Client::compute_final_grade(string outputfile_name)
            OutputFile << client_inf[i][0] <<"Final Grade: "<<final_grade<<endl; 
         
     }
+
+void Client::set_client_info(string fileName)
+{
+    ifstream InputFile(fileName);
+    if(!InputFile.is.open())
+    {
+        cout << "Error: Unable to open file!" << endl; 
+    }
+
+    stirng line;
+    while(getline(InputFile,line))
+    {
+        string name;
+        string ssn;
+        double bankAccount;
+        double balance;
+        ClientInfo.client_name = name;
+        ClientInfo.ssn = ssn;
+        ClientInfo.bank_account = bankAccount;
+        ClientInfo.balance = balance;
+    }
+
+    else
+    {
+      cout << "Error: Unable to get line: " << line << endl;  
+    }
+}
+
+ Client::get_client_info()
+{
+    ifstream InputFile(fileName);
+    if(!InputFile.is.open())
+    {
+        cout << "Error: Unable to open file!" << endl; 
+    }
+
+    Client* client = new Client();
+    string name;
+    string ssn;
+    double bankAccount;
+    double balance;
+    
+
+    if (InputFile >> name >> ssn >> bankAccount >> balance)
+    {
+        client->name = name;
+        client->ssn = ssn;
+        client->bankAccount = bankAccount;
+        client->balance = balance;
+    } 
+
+    else
+    {
+        cout << "Error: Unable to read client information from the file." << endl;
+        delete client;
+        return nullptr;
+    }
+
+    return client;
+}
+
+void Client::saving_info()
+{
+
+}
+
+double Client::deposit(string account_num,double amount)
+{
+    
+}
+
+double Client::withdraw(string account_num, double withdraw) 
+{
+
+}   
 }
