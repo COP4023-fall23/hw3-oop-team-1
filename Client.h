@@ -21,7 +21,7 @@ using namespace std;
     {
     private:
         int num_client;
-        Client *client_info;
+        ClientInfo* client_info;
         double balance;
 
     public:
@@ -32,7 +32,7 @@ using namespace std;
         double withdraw(string account_num, double withdraw);
         void saving_info(string file_name);
         void find_client(string account_num);
-        Bank(Bank& otherBank){};
+        Bank(Bank& otherBank);
         Bank(string file_name, int num_std);
         ~Bank();
     };

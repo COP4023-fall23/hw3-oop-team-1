@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <Client.h>
+#include "Client.h"
 //inlcude all needed libraries
 
 
@@ -10,21 +10,28 @@ using namespace std;
 
 int main()
 {
+  
+  string file_name = "client_info.txt";
+  int num_std = 10;
+  double deposit_amount = 100.0; 
+  
+  double withdrawal_amount = 50.0;
+  string account_num = "789-01-2345"; 
+
     //Define an instance of the class.
       Bank bank(file_name, num_std);
     //Use the defined constructor to initialize you private members.
-      int num_std = 10;
-      string file_name = "client_info.txt";
+      
+      
     // Use the deposit function.
-      string account_num = "789-01-2345"; 
-      double deposit_amount = 100.0; 
-      double updated_balance = client.deposit(account_num, deposit_amount);
+      
+      double updated_balance = bank.deposit(account_num, deposit_amount);
       cout << "Updated balance after deposit: $" << updated_balance << endl;
 
     // Use the withdraw function.
       string withdrawal_account_num = "789-01-2345"; // 
-      double withdrawal_amount = 50.0;
-      updated_balance = client.withdraw(withdrawal_account_num, withdrawal_amount);
+      
+      updated_balance = bank.withdraw(withdrawal_account_num, withdrawal_amount);
       cout << "Updated balance after withdrawal: $" << updated_balance << endl;
 
     // Use the saving_info function.
@@ -38,6 +45,7 @@ int main()
        
     // Create a second object and use the deep copy constructor to make a copy of you first object.
       // bank copyClient = client;
+     // Bank Bank(Bank otherBank)
 
       return 0;
 }   

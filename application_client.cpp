@@ -11,20 +11,20 @@ using namespace std;
 Bank::Bank(string file_name, int num_std)
 {
 
-    num_clients = num_std;
+    num_client = num_std;
 
-    client_inf = new ClientInfo[num_clients];
+    client_info = new ClientInfo[num_client];
     set_client_info(file_name);
 }
 
 Bank::~Bank()
 {
-    delete[] client_inf;
-    client_inf = nullptr;
+    delete[] client_info;
+    client_info = nullptr;
 
 }
 
-int Bank::find_client(string name)
+void Bank::find_client(string account_num)
 {
        for (int i = 0; i < num_client; i++) {
         if (client_info[i].client_name == account_num) {
@@ -41,7 +41,7 @@ int Bank::find_client(string name)
 void Bank::set_client_info(string fileName)
 {
     ifstream InputFile(fileName);
-    if (!InputFile.is.open())
+    if (!InputFile)
     {
         cout << "Error: Unable to open file!" << endl;
         return;
@@ -55,12 +55,19 @@ void Bank::set_client_info(string fileName)
     InputFile.close();
 }
 
- Bank::get_client_info()
+void Bank::get_client_info()
 {
-     return client_info;
+    if (client_info != nullptr) {
+            cout << "Client Name: " << client_info->client_name << endl;
+            cout << "client SSN: " << client_info->ssn << endl;
+            cout << "Account Number: " << client_info->bank_account << endl;
+            cout << "Balance: $" << client_info->balance << endl;
+        } else {
+            cout << "Client information is not available." << std::endl;
+        }
 }
 
-void Bank::saving_info()
+void Bank::saving_info(string file_name)
 {
      ofstream OutputFile(file_name);
      if (!OutputFile.is_open())
@@ -95,9 +102,9 @@ double Bank::withdraw(string account_num, double withdraw)
     {
         if (client_info[i].client_name == account_num)
         {
-            if (client_info[i].balance >= withdrawal)
+            if (client_info[i].balance >= withdraw)
             {
-                client_info[i].balance -= withdrawal;
+                client_info[i].balance -= withdraw;
                 return client_info[i].balance;
             }
             else
@@ -110,13 +117,13 @@ double Bank::withdraw(string account_num, double withdraw)
     return -1.0; 
 }
 
-Bank::Bank(const Client &other)
+Bank::Bank(Bank& otherBank)
 {
-    num_client = other.num_client;
+    num_client = otherBank.num_client;
     client_info = new ClientInfo[num_client]; 
 
     for (int i = 0; i < num_client; i++)
     {
-        client_info[i] = other.client_info[i];
+        client_info[i] =otherBank.client_info[i];
     }
 }
