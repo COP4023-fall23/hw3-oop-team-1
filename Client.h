@@ -7,48 +7,32 @@ In this file you must create your class and prototype your public functions.
 using namespace std;
 
 
-class Client
-{ 
-    private:
-        //define your private members here
-        
-        string** client_inf;
-        double** test_grade;
-        int num_clients;
+    // define your private members here
 
+    struct ClientInfo
+    {
+        string client_name;
+        string ssn;
+        double bank_account;
+        double balance;
+    };
 
-    public:
-        //define your public members here
-
-        Client(){};
-        Client(string file_name, int num_std);
-        ~Client();
-        void compute_final_grade(string outputfile_name);
-        int find_client(string name);
-
-        void set_client_info(string fileName);
-        void get_client_info();
-        void saving_info();
-        double deposit(string account_num,double amount);
-        double withdraw(string account_num, double withdraw);
-
-
-
-};
-
-struct ClientInfo
-{
-    
-    string client_name;
-    string ssn;
-    double bank_account;
-    double balance;
-};
-
-class Bank
-{
+    class Bank
+    {
     private:
         int num_client;
-        Client* client_info;  
+        Client *client_info;
+        double balance;
 
-};
+    public:
+        // define your public members here
+        void set_client_info(string fileName);
+        void get_client_info();
+        double deposit(string account_num, double amount);
+        double withdraw(string account_num, double withdraw);
+        void saving_info(string file_name);
+        void find_client(string account_num);
+        Bank(Bank& otherBank){};
+        Bank(string file_name, int num_std);
+        ~Bank();
+    };
